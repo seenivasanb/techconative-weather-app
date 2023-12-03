@@ -2,10 +2,12 @@
 
 import useGetUserCoords from "@/hooks/useGetUserCoords";
 import useSetURLCoords from "@/hooks/useSetURLCoords";
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
+import { LocationType } from "@/types/hooks";
+import Map from "../map";
 
 const Navigator = () => {
-  const { location, isLoading, isError } = useGetUserCoords();
+  const { location } = useGetUserCoords();
   const { handleSetURLParams } = useSetURLCoords();
 
   useEffect(() => {
@@ -14,23 +16,18 @@ const Navigator = () => {
     }
   }, [handleSetURLParams, location]);
 
-  if (isLoading) {
-    return <h2>Fetching the user geolocation ...</h2>;
-  }
+  const handleClickSetURLParams = useCallback(
+    (coords: LocationType) => {
+      handleSetURLParams(coords);
+    },
+    [handleSetURLParams]
+  );
 
-  if (isError) {
-    return <h2>Failed to get user location! Try later!</h2>;
-  }
-
-  if (location) {
-    return (
-      <div>
-        <h2>{JSON.stringify(location, null, 2)}</h2>
-      </div>
-    );
-  }
-
-  return <h2>Please enable the location access in your browser!</h2>;
+  return (
+    <section>
+      <Map setCoords={handleClickSetURLParams} />
+    </section>
+  );
 };
 
 export default Navigator;
