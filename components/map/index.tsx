@@ -3,10 +3,10 @@ import { GoogleMap, useLoadScript } from "@react-google-maps/api";
 import { LocationType } from "@/types/hooks";
 
 type MapProps = {
-  setCoords?: (coords: LocationType) => void;
+  onSetCoords: React.Dispatch<React.SetStateAction<LocationType>>;
 };
 
-const Map = ({ setCoords }: MapProps) => {
+const Map = ({ onSetCoords }: MapProps) => {
   const [libraries] = useState<any>(["places"]);
 
   const { isLoaded, loadError } = useLoadScript({
@@ -16,13 +16,16 @@ const Map = ({ setCoords }: MapProps) => {
 
   const handleClick = useCallback(
     (e: globalThis.google.maps.MapMouseEvent) => {
-      const coords: LocationType = {
-        latitude: e?.latLng?.lat() || 0,
-        longitude: e?.latLng?.lng() || 0,
-      };
-      if (setCoords) setCoords(coords);
+      console.log(e);
+
+      const latitude = e?.latLng?.lat();
+      const longitude = e?.latLng?.lng();
+
+      if (latitude && longitude) {
+        onSetCoords({ latitude, longitude });
+      }
     },
-    [setCoords]
+    [onSetCoords]
   );
 
   if (!isLoaded) return <div>Loading....</div>;
@@ -35,7 +38,7 @@ const Map = ({ setCoords }: MapProps) => {
         zoom={12}
         center={{ lat: 12.9755397, lng: 80.2206438 }}
         mapContainerClassName="map"
-        mapContainerStyle={{ width: "500px", height: "600px", margin: "auto" }}
+        mapContainerStyle={{ width: "100%", height: "70vh", margin: "auto" }}
         onClick={(e) => handleClick(e)}
       />
     </div>
