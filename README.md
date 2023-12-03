@@ -161,7 +161,18 @@ After successfully committing, execute the following command to push the changes
 ~techconative-weather-app> git push
 ```
 
-Assuming there are no build errors, your changes will be pushed to the remote branch.
+Assuming there are no build errors, your changes will be pushed to the remote branch. And you can see the below acknowledge for the push.
+
+```bash
+> techconative-weather-app@0.1.0 lint
+> next lint
+
+✔ No ESLint warnings or errors
+[main 94e29ba] :pencil2: DOCS: added husky feature details the README.md file
+ 1 file changed, 24 insertions(+)
+ create mode 100644 README.md
+
+```
 
 [cna-link]: https://github.com/vercel/next.js/tree/canary/packages/create-next-app
 [eslint-link]: https://nextjs.org/docs/pages/building-your-application/configuring/eslint
