@@ -1,4 +1,4 @@
-# Techconative Weather App
+# Techconative Weather Application
 
 Hi! This assignment project serves as a demonstration of my proficiency and expertise in crafting a web application using **ReactJS** with a foundation built upon **Next.js** and its associated ecosystem.
 
