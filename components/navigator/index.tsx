@@ -1,10 +1,18 @@
 "use client";
 
 import useGetUserCoords from "@/hooks/useGetUserCoords";
-import React from "react";
+import useSetURLCoords from "@/hooks/useSetURLCoords";
+import React, { useEffect } from "react";
 
 const Navigator = () => {
   const { location, isLoading, isError } = useGetUserCoords();
+  const { handleSetURLParams } = useSetURLCoords();
+
+  useEffect(() => {
+    if (location) {
+      handleSetURLParams(location);
+    }
+  }, [handleSetURLParams, location]);
 
   if (isLoading) {
     return <h2>Fetching the user geolocation ...</h2>;
@@ -15,7 +23,11 @@ const Navigator = () => {
   }
 
   if (location) {
-    return <h2>{JSON.stringify(location, null, 2)}</h2>;
+    return (
+      <div>
+        <h2>{JSON.stringify(location, null, 2)}</h2>
+      </div>
+    );
   }
 
   return <h2>Please enable the location access in your browser!</h2>;
