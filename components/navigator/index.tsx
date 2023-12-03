@@ -3,8 +3,8 @@
 import useGetUserCoords from "@/hooks/useGetUserCoords";
 import useSetURLCoords from "@/hooks/useSetURLCoords";
 import React, { useCallback, useEffect } from "react";
+import MapContainer from "../map-container";
 import { LocationType } from "@/types/hooks";
-import Map from "../map";
 
 const Navigator = () => {
   const { location } = useGetUserCoords();
@@ -24,8 +24,8 @@ const Navigator = () => {
   );
 
   return (
-    <section>
-      <Map setCoords={handleClickSetURLParams} />
+    <section className="flex w-full items-center justify-center">
+      <MapContainer onSetURLParams={handleClickSetURLParams} />
     </section>
   );
 };
