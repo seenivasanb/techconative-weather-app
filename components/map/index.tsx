@@ -1,12 +1,12 @@
 import React, { memo, useCallback, useState } from "react";
 import { GoogleMap, useLoadScript } from "@react-google-maps/api";
-import { LocationType } from "@/types/hooks";
+import { SetCoordsType } from "@/types/component";
 
 type MapProps = {
-  onSetCoords: React.Dispatch<React.SetStateAction<LocationType>>;
+  onClickSetCoords: ({ coords, address }: SetCoordsType) => void;
 };
 
-const Map = ({ onSetCoords }: MapProps) => {
+const Map = ({ onClickSetCoords }: MapProps) => {
   const [libraries] = useState<any>(["places"]);
 
   const { isLoaded, loadError } = useLoadScript({
@@ -14,18 +14,28 @@ const Map = ({ onSetCoords }: MapProps) => {
     libraries,
   });
 
-  const handleClick = useCallback(
-    (e: globalThis.google.maps.MapMouseEvent) => {
-      console.log(e);
+  const getLocation = async ({ lat, lng }: any) => {
+    const geocoder = new globalThis.google.maps.Geocoder();
+    const result = await geocoder.geocode({
+      location: { lat, lng },
+    });
+    return await result.results[0];
+  };
 
+  const handleClick = useCallback(
+    async (e: globalThis.google.maps.MapMouseEvent) => {
       const latitude = e?.latLng?.lat();
       const longitude = e?.latLng?.lng();
 
       if (latitude && longitude) {
-        onSetCoords({ latitude, longitude });
+        const result = await getLocation({ lat: latitude, lng: longitude });
+        onClickSetCoords({
+          coords: { latitude, longitude },
+          address: result.formatted_address,
+        });
       }
     },
-    [onSetCoords]
+    [onClickSetCoords]
   );
 
   if (!isLoaded) return <div>Loading....</div>;
