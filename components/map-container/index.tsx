@@ -11,6 +11,7 @@ import React, { useCallback, useState } from "react";
 import Map from "../map";
 import { Button } from "../ui/button";
 import { LocationType } from "@/types/hooks";
+import { SetCoordsType } from "@/types/component";
 
 type MapContainerProps = {
   onSetURLParams: (coords: LocationType) => void;
@@ -18,6 +19,7 @@ type MapContainerProps = {
 
 const MapContainer = ({ onSetURLParams }: MapContainerProps) => {
   const [coords, setCoords] = useState<LocationType>({});
+  const [address, setAddress] = useState("");
 
   const handleClickSetURLParams = useCallback(() => {
     if (coords.latitude && coords.longitude) {
@@ -25,25 +27,37 @@ const MapContainer = ({ onSetURLParams }: MapContainerProps) => {
     }
   }, [coords, onSetURLParams]);
 
+  const handleClickSetCoords = useCallback(
+    ({ coords, address }: SetCoordsType) => {
+      setCoords(coords);
+      setAddress(address);
+    },
+    []
+  );
+
   return (
-    <div className="w-full">
+    <div className="w-[1000px]">
       <Dialog>
         <DialogTrigger className="w-full">
           <div className="rounded-full bg-violet-600 p-4 text-center text-white hover:bg-violet-800">
-            Chennai, Tamilnadu, India
+            <div className="line-clamp-1">
+              {address || "Choose the location"}
+            </div>
           </div>
         </DialogTrigger>
-        <DialogContent className="w-full p-3">
+        <DialogContent className="max-w-6xl p-3">
           <DialogHeader className="w-full p-0">
-            <DialogTitle className="flex w-full items-center justify-between">
-              <div className=""> Choose the location</div>
+            <DialogTitle className="flex items-center justify-between ">
+              <div className="line-clamp-1 pr-4">
+                {address || "Choose the location"}
+              </div>
               <DialogClose asChild>
                 <Button onClick={handleClickSetURLParams}>Get Weather</Button>
               </DialogClose>
             </DialogTitle>
           </DialogHeader>
 
-          <Map onSetCoords={setCoords} />
+          <Map onClickSetCoords={handleClickSetCoords} />
         </DialogContent>
       </Dialog>
     </div>
