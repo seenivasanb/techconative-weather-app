@@ -4,8 +4,8 @@ import useGetUserCoords from ".";
 describe("useGetUserCoords Hook", () => {
   it("Succeed with returning coordinates", () => {
     const mockCoordinate = {
-      latitude: 123.456,
-      longitude: 654.321,
+      latitude: "123.456",
+      longitude: "654.321",
     };
 
     const mockGeolocation = {
@@ -21,7 +21,7 @@ describe("useGetUserCoords Hook", () => {
 
     const { result } = renderHook(() => useGetUserCoords());
 
-    expect(result.current.location).toStrictEqual(mockCoordinate);
+    expect(result.current.coords).toStrictEqual(mockCoordinate);
     expect(result.current.isLoading).toBe(false);
     expect(result.current.isError).toBe(false);
   });
@@ -37,7 +37,7 @@ describe("useGetUserCoords Hook", () => {
 
     const { result } = renderHook(() => useGetUserCoords());
 
-    expect(result?.current?.location).toBe(undefined);
+    expect(result?.current?.coords).toStrictEqual({latitude: "", longitude: ""});
     expect(result?.current?.isLoading).toBe(false);
     expect(result.current.isError).toBe(true);
   });
