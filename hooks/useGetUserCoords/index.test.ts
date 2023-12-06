@@ -37,7 +37,10 @@ describe("useGetUserCoords Hook", () => {
 
     const { result } = renderHook(() => useGetUserCoords());
 
-    expect(result?.current?.coords).toStrictEqual({latitude: "", longitude: ""});
+    expect(result?.current?.coords).toStrictEqual({
+      latitude: "",
+      longitude: "",
+    });
     expect(result?.current?.isLoading).toBe(false);
     expect(result.current.isError).toBe(true);
   });

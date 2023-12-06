@@ -20,9 +20,9 @@ const useURLCoords = () => {
   const getURLCoords = useCallback(() => {
     const params = new URLSearchParams();
     return {
-      latitude: params.get('lat'),
-      longitude: params.get('lon')
-    }
+      latitude: params.get("lat"),
+      longitude: params.get("lon"),
+    };
   }, []);
 
   return { getURLCoords, setURLCoords };
