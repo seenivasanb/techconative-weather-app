@@ -25,7 +25,10 @@ const Navigator = () => {
 
   return (
     <section className="flex w-full items-center justify-center">
-      <MapContainer onSetURLParams={handleClickSetURLParams} />
+      <MapContainer
+        location={location}
+        onSetURLParams={handleClickSetURLParams}
+      />
     </section>
   );
 };

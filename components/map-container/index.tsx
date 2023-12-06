@@ -14,11 +14,15 @@ import { LocationType } from "@/types/hooks";
 import { SetCoordsType } from "@/types/component";
 
 type MapContainerProps = {
+  location: LocationType;
   onSetURLParams: (coords: LocationType) => void;
 };
 
-const MapContainer = ({ onSetURLParams }: MapContainerProps) => {
-  const [coords, setCoords] = useState<LocationType>({});
+const MapContainer = ({ onSetURLParams, location }: MapContainerProps) => {
+  const [coords, setCoords] = useState<LocationType>({
+    latitude: "",
+    longitude: "",
+  });
   const [address, setAddress] = useState("");
 
   const handleClickSetURLParams = useCallback(() => {
@@ -57,7 +61,7 @@ const MapContainer = ({ onSetURLParams }: MapContainerProps) => {
             </DialogTitle>
           </DialogHeader>
 
-          <Map onClickSetCoords={handleClickSetCoords} />
+          <Map location={location} onClickSetCoords={handleClickSetCoords} />
         </DialogContent>
       </Dialog>
     </div>
