@@ -1,4 +1,4 @@
-import { LocationType } from "@/types/hooks";
+import { CoordsType } from "@/types/hooks";
 
 const BASE_WEATHER_API_URL = "https://api.openweathermap.org/data/2.5/weather";
 const API_KEY = process.env.NEXT_PUBLIC_WEATHER_API_KEY;
@@ -6,7 +6,7 @@ const API_KEY = process.env.NEXT_PUBLIC_WEATHER_API_KEY;
 export const fetchWeatherReports = async ({
   latitude,
   longitude,
-}: LocationType) => {
+}: CoordsType) => {
   try {
     const latlng = `lat=${latitude}&lon=${longitude}`;
     const response = await fetch(

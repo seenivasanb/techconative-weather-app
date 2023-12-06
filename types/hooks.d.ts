@@ -1,4 +1,4 @@
-export type LocationType = {
+export type CoordsType = {
   latitude: string;
   longitude: string;
 };

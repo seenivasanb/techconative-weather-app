@@ -1,8 +1,8 @@
-import { LocationType } from "@/types/hooks";
+import { CoordsType } from "@/types/hooks";
 import { useEffect, useState } from "react";
 
 const useGetUserCoords = () => {
-  const [location, setLocation] = useState<LocationType>({
+  const [coords, setCoords] = useState<CoordsType>({
     latitude: "",
     longitude: "",
   });
@@ -14,7 +14,7 @@ const useGetUserCoords = () => {
       if ("geolocation" in navigator) {
         navigator.geolocation.getCurrentPosition(({ coords }) => {
           const { latitude, longitude } = coords;
-          setLocation({
+          setCoords({
             latitude: latitude.toString(),
             longitude: longitude.toString(),
           });
@@ -27,7 +27,7 @@ const useGetUserCoords = () => {
     }
   }, []);
 
-  return { location, isLoading, isError };
+  return { coords, isLoading, isError };
 };
 
 export default useGetUserCoords;
