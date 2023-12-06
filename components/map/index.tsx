@@ -8,8 +8,9 @@ type MapProps = {
 };
 
 const Map = ({
-  coords: {latitude, longitude},
-  onSetCurrentPlace }: MapProps) => {
+  coords: { latitude, longitude },
+  onSetCurrentPlace,
+}: MapProps) => {
   const [libraries] = useState<any>(["places"]);
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY!,
@@ -20,7 +21,7 @@ const Map = ({
     async (e: globalThis.google.maps.MapMouseEvent) => {
       const lat = e?.latLng?.lat();
       const lng = e?.latLng?.lng();
-      onSetCurrentPlace({lat, lng});
+      onSetCurrentPlace({ lat, lng });
     },
     [onSetCurrentPlace]
   );
@@ -29,16 +30,16 @@ const Map = ({
   if (loadError) return <div>{loadError.message}</div>;
 
   return (
-      <GoogleMap
-        zoom={12}
-        center={{
-          lat: Number(latitude) || 123.456,
-          lng: Number(longitude) || 123.456,
-        }}
-        mapContainerClassName="map"
-        mapContainerStyle={{ width: "100%", height: "70vh", margin: "auto" }}
-        onClick={(e) => handleClick(e)}
-      />
+    <GoogleMap
+      zoom={12}
+      center={{
+        lat: Number(latitude) || 123.456,
+        lng: Number(longitude) || 123.456,
+      }}
+      mapContainerClassName="map"
+      mapContainerStyle={{ width: "100%", height: "70vh", margin: "auto" }}
+      onClick={(e) => handleClick(e)}
+    />
   );
 };
 
