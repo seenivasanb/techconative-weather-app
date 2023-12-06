@@ -2,7 +2,10 @@ import { LocationType } from "@/types/hooks";
 import { useEffect, useState } from "react";
 
 const useGetUserCoords = () => {
-  const [location, setLocation] = useState<LocationType>();
+  const [location, setLocation] = useState<LocationType>({
+    latitude: "",
+    longitude: "",
+  });
   const [isLoading, setLoading] = useState(true);
   const [isError, setError] = useState(false);
 
@@ -11,7 +14,10 @@ const useGetUserCoords = () => {
       if ("geolocation" in navigator) {
         navigator.geolocation.getCurrentPosition(({ coords }) => {
           const { latitude, longitude } = coords;
-          setLocation({ latitude, longitude });
+          setLocation({
+            latitude: latitude.toString(),
+            longitude: longitude.toString(),
+          });
         });
       }
     } catch (error) {
