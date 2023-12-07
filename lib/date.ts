@@ -30,3 +30,13 @@ export const getCurrentDate = () => {
 
   return `${dayOfWeek}, ${dayOfMonth} ${month}`;
 };
+
+export const getTimeOfDay = () => {
+  const currentHour = new Date().getHours();
+
+  if (currentHour >= 6 && currentHour < 18) {
+    return "day";
+  } else {
+    return "night";
+  }
+};

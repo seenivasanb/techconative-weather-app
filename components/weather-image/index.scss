@@ -1,7 +1,23 @@
-.main-image {
-  @apply w-[100px] h-[100px] bg-[url('/weather-icons.svg')] bg-[length:600px];
+.weather-image {
+  @apply w-[120px] h-[100px] bg-[url('/weather-icons.svg')] bg-[length:600px] bg-[-40px_-40px];
 
-  &.dizzle {
-    @apply bg-[-40px_-40px];
+  &--night-mist,
+  &--day-mist {
+    @apply bg-[-310px_-185px] h-[120px];
+  }
+
+  &--night-cloud,
+  &--night-broken-clouds {
+    @apply bg-[-180px_-300px];
+  }
+
+  &--night-few-clouds,
+  &--day-few-clouds {
+    @apply bg-[-320px_-40px];
+  }
+
+  &--day-cloud,
+  &--day-broken-clouds {
+    @apply bg-[-170px_-25px];
   }
 }

@@ -57,7 +57,7 @@ const Navigator = () => {
   return (
     <Dialog onOpenChange={handleOpenChange}>
       <DialogTrigger className="flex w-full justify-center">
-        <div className="mb-4 w-4/5 rounded-full bg-transparent p-4 text-center text-sm font-semibold uppercase text-white shadow-[5px_10px_60px_5px_rgba(0,0,0,0.5)]">
+        <div className="mb-4 w-4/5 rounded-full bg-transparent p-4 text-center text-sm font-semibold uppercase text-white shadow-[5px_10px_90px_5px_rgba(0,0,0,0.4)]">
           <div className="line-clamp-1">{place || "Choose the location"}</div>
         </div>
       </DialogTrigger>

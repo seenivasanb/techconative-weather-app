@@ -10,7 +10,8 @@
       @apply from-sky-600 from-0% via-sky-400 via-30% to-sky-900 to-100%;
     }
 
-    &--broken-clouds {
+    &--broken-clouds,
+    &--few-clouds {
       @apply from-violet-950 from-0% via-blue-800 via-40% to-violet-500;
     }
   }
