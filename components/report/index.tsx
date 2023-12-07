@@ -1,5 +1,4 @@
 /* eslint-disable tailwindcss/no-custom-classname */
-"use client";
 
 import React, { memo } from "react";
 import WeatherImage from "../weather-image";
@@ -11,8 +10,10 @@ import { FaNfcDirectional } from "react-icons/fa6";
 import { VscEye } from "react-icons/vsc";
 import { CiPercent } from "react-icons/ci";
 import "./index.scss";
+import BgOverlay from "./bg-overlay";
 
 const Report = ({ report }: any) => {
+  // console.log(report);
   const main = report?.weather && report?.weather[0]?.main;
   const temp = Math.round(Number(report?.main?.temp));
   const max = Math.round(Number(report?.main?.temp_max));
@@ -28,7 +29,7 @@ const Report = ({ report }: any) => {
 
   return (
     <section className="report">
-      <div className="report__bg-overlay" />
+      <BgOverlay theme={description} />
       {report?.weather ? (
         <div>
           <div className="report__main">
@@ -117,9 +118,11 @@ const Report = ({ report }: any) => {
           </div>
         </div>
       ) : (
-        <div className="p-10 text-center">
-          <h3 className="mb-4 text-2xl font-bold">No Reports Available!</h3>
-          <p className="text-sm">
+        <div className="report__not-available">
+          <h3 className="report__not-available__header">
+            No Reports Available!
+          </h3>
+          <p className="report__not-available__text">
             Choose any location in the map to get the weather report
           </p>
         </div>

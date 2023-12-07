@@ -1,0 +1,17 @@
+.report {
+  &__bg-overlay {
+    @apply fixed left-0 top-0 -z-10 h-full w-full bg-gradient-to-b from-red-300 from-30% via-red-400 to-fuchsia-950;
+
+    &--mist {
+      @apply from-blue-900 from-30% via-blue-800 to-blue-900;
+    }
+
+    &--clouds {
+      @apply from-sky-600 from-0% via-sky-400 via-30% to-sky-900 to-100%;
+    }
+
+    &--broken-clouds {
+      @apply from-violet-950 from-0% via-blue-800 via-40% to-violet-500;
+    }
+  }
+}
