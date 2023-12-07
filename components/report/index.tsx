@@ -2,7 +2,7 @@
 
 import React, { memo } from "react";
 import WeatherImage from "../weather-image";
-import { getCurrentDate } from "@/lib/date";
+import { getCurrentDate, getTimeOfDay } from "@/lib/date";
 import { PiThermometerThin } from "react-icons/pi";
 import { SlSpeedometer } from "react-icons/sl";
 import { MdOutlineAir } from "react-icons/md";
@@ -14,7 +14,6 @@ import BgOverlay from "./bg-overlay";
 
 const Report = ({ report }: any) => {
   // console.log(report);
-  const main = report?.weather && report?.weather[0]?.main;
   const temp = Math.round(Number(report?.main?.temp));
   const max = Math.round(Number(report?.main?.temp_max));
   const min = Math.round(Number(report?.main?.temp_min));
@@ -26,6 +25,7 @@ const Report = ({ report }: any) => {
   const wind = report?.wind;
   const currentDate = getCurrentDate();
   const visibility = report?.visibility && report.visibility / 1000;
+  const time = getTimeOfDay();
 
   return (
     <section className="report">
@@ -39,14 +39,18 @@ const Report = ({ report }: any) => {
                 <p className="text-xs">{currentDate}</p>
               </div>
               <div className="report__left__image">
-                <WeatherImage main={main} />
+                <WeatherImage climate={description} time={time} />
               </div>
             </div>
             <div className="report__right">
-              <h2 className="report__right__climate">{description}</h2>
+              <h2 className="report__right__climate">
+                {time}, {description}
+              </h2>
               <div className="report__right__temperature">
-                <span className="report__right__deg" />
-                <h2 className="report__right__temp">{temp}</h2>
+                <h2 className="report__right__temp">
+                  {temp}
+                  <span className="report__right__deg" />
+                </h2>
               </div>
               <div className="report__right__max-min">
                 <p className="">Max: {max}&deg;</p>

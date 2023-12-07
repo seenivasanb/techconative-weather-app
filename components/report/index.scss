@@ -2,14 +2,14 @@
   @apply mb-8 w-full max-w-md p-4 text-white sm:mb-10 sm:rounded-2xl sm:p-10 sm:shadow-2xl;
 
   &__main {
-    @apply mb-2 flex flex-row justify-between;
+    @apply mb-12 flex flex-row justify-between;
   }
 
   &__left {
     @apply max-w-[150px];
 
     &__header {
-      @apply ml-2 mt-16;
+      @apply ml-2 sm:mt-16;
     }
 
     &__place {
@@ -29,7 +29,7 @@
     }
 
     &__temperature {
-      @apply relative pr-6;
+      @apply flex;
     }
 
     &__deg {
@@ -37,7 +37,7 @@
     }
 
     &__temp {
-      @apply text-[130px] font-bold leading-none;
+      @apply text-[130px] font-bold leading-none max-w-fit relative pr-6;
     }
 
     &__max-min {
