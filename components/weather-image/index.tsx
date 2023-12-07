@@ -1,6 +1,6 @@
 // import Image from "next/image";
 import React from "react";
-import "./index.css";
+import "./index.scss";
 
 const WeatherImage = ({ main }: any) => {
   return (

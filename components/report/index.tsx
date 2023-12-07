@@ -1,3 +1,4 @@
+/* eslint-disable tailwindcss/no-custom-classname */
 "use client";
 
 import React, { memo } from "react";
@@ -9,6 +10,7 @@ import { MdOutlineAir } from "react-icons/md";
 import { FaNfcDirectional } from "react-icons/fa6";
 import { VscEye } from "react-icons/vsc";
 import { CiPercent } from "react-icons/ci";
+import "./index.scss";
 
 const Report = ({ report }: any) => {
   const main = report?.weather && report?.weather[0]?.main;
@@ -16,7 +18,7 @@ const Report = ({ report }: any) => {
   const max = Math.round(Number(report?.main?.temp_max));
   const min = Math.round(Number(report?.main?.temp_min));
   const description = report?.weather && report?.weather[0]?.description;
-  const feelsLike = report?.main?.feels_like;
+  const feelsLike = Math.round(Number(report?.main?.feels_like));
   const humidity = report?.main?.humidity;
   const pressure = report?.main?.pressure;
   const name = report?.name;
@@ -25,85 +27,91 @@ const Report = ({ report }: any) => {
   const visibility = report?.visibility && report.visibility / 1000;
 
   return (
-    <section className="mb-4 w-full p-4 text-white">
-      <div className="fixed left-0 top-0 -z-10 h-full w-full bg-gradient-to-b from-red-300 from-40% via-red-400 to-fuchsia-950" />
+    <section className="report">
+      <div className="report__bg-overlay" />
       {report?.weather ? (
         <div>
-          <div className="mb-2 flex flex-row justify-between">
-            <div className="max-w-[150px] flex-none">
-              <div className="ml-2 mt-16 text-left">
-                <h2 className="line-clamp-2 text-lg font-bold capitalize">
-                  {name}
-                </h2>
+          <div className="report__main">
+            <div className="report__left">
+              <div className="report__left__header">
+                <h2 className="report__left__place">{name}</h2>
                 <p className="text-xs">{currentDate}</p>
               </div>
-              <div className="mb-6 flex-1 origin-top-left">
+              <div className="report__left__image">
                 <WeatherImage main={main} />
               </div>
             </div>
-            <div className="flex flex-col justify-start">
-              <h2 className="text-right text-lg capitalize leading-none">
-                {description}
-              </h2>
-              <div className="relative pr-6">
-                <span className="absolute right-0 top-4 h-6 w-6 rounded-full border-[6px] border-white bg-transparent"></span>
-                <h2 className="text-[130px] font-bold leading-none">{temp}</h2>
+            <div className="report__right">
+              <h2 className="report__right__climate">{description}</h2>
+              <div className="report__right__temperature">
+                <span className="report__right__deg" />
+                <h2 className="report__right__temp">{temp}</h2>
               </div>
-              <div className="ml-2 flex gap-4 text-right  text-sm">
-                <p className="">Max: {max} &deg;</p>
-                <p className="">Min: {min} &deg;</p>
+              <div className="report__right__max-min">
+                <p className="">Max: {max}&deg;</p>
+                <p className="">Min: {min}&deg;</p>
               </div>
             </div>
           </div>
 
-          <div className="grid grid-cols-3 gap-4 gap-y-8">
-            <div className="flex flex-col items-center justify-between gap-3 text-center">
-              <PiThermometerThin size={48} />
+          <div className="report__metrics">
+            <div className="report__metric">
+              <PiThermometerThin size={42} className="mt-1" />
               <div>
-                <p className="text-lg leading-none">{feelsLike}</p>
-                <span className="text-xs opacity-60">feels like</span>
+                <p className="report__metric__value">{feelsLike}&deg;</p>
+                <span className="report__metric__name">feels like</span>
               </div>
             </div>
 
-            <div className="flex flex-col items-center justify-between gap-3 text-center">
+            <div className="report__metric">
               <CiPercent size={48} />
               <div>
-                <p className="text-lg leading-none">{humidity}</p>
-                <span className="text-xs opacity-60">humidity</span>
+                <p className="report__metric__value">
+                  {humidity}
+                  <span className="text-sm">%</span>
+                </p>
+                <span className="report__metric__name">humidity</span>
               </div>
             </div>
 
-            <div className="flex flex-col items-center justify-between gap-3 text-center">
+            <div className="report__metric">
               <SlSpeedometer size={36} className="mt-2" />
               <div>
-                <p className="text-lg leading-none">{pressure} hpa</p>
-                <span className="text-xs opacity-60">pressure</span>
+                <p className="report__metric__value">
+                  {pressure}
+                  <span className="text-sm">hpa</span>
+                </p>
+                <span className="report__metric__name">pressure</span>
               </div>
             </div>
 
-            <div className="flex flex-col items-center justify-between gap-3 text-center">
+            <div className="report__metric">
               <MdOutlineAir size={36} />
               <div>
-                <p className="text-lg leading-none">
-                  {Math.round(Number(wind?.speed))} km/h
+                <p className="report__metric__value">
+                  {Math.round(Number(wind?.speed))}
+                  <span className="text-sm">km/h</span>
                 </p>
-                <span className="text-xs opacity-60">wind speed</span>
+                <span className="report__metric__name">wind speed</span>
               </div>
             </div>
 
-            <div className="flex flex-col items-center justify-between gap-3 text-center">
+            <div className="report__metric">
               <FaNfcDirectional size={36} />
               <div>
-                <p className="text-lg leading-none">{wind?.deg}&deg;</p>
-                <span className="text-xs opacity-60">direction</span>
+                <p className="report__metric__value">{wind?.deg}&deg;</p>
+                <span className="report__metric__name">direction</span>
               </div>
             </div>
 
-            <div className="flex flex-col items-center justify-between gap-3 text-center">
+            <div className="report__metric">
               <VscEye size={36} />
               <div>
-                <p className="text-lg leading-none">{visibility} km</p>
-                <span className="text-xs opacity-60">visibility</span>
+                <p className="report__metric__value">
+                  {visibility}
+                  <span className="text-sm">km</span>
+                </p>
+                <span className="report__metric__name">visibility</span>
               </div>
             </div>
           </div>

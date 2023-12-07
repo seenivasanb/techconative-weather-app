@@ -1,0 +1,79 @@
+.report {
+  @apply mb-8 w-full max-w-md p-4 text-white sm:mb-10 sm:rounded-2xl sm:p-10 sm:shadow-xl;
+
+  &__bg-overlay {
+    @apply fixed left-0 top-0 -z-10 h-full w-full bg-gradient-to-b from-red-300 from-40% via-red-400 to-fuchsia-950;
+  }
+
+  &__main {
+    @apply mb-2 flex flex-row justify-between;
+  }
+
+  &__left {
+    @apply max-w-[150px];
+
+    &__header {
+      @apply ml-2 mt-16;
+    }
+
+    &__place {
+      @apply line-clamp-2 text-lg font-bold capitalize;
+    }
+
+    &__image {
+      @apply mb-6 flex-1 origin-top-left;
+    }
+  }
+
+  &__right {
+    @apply flex flex-col justify-start;
+
+    &__climate {
+      @apply text-right text-lg capitalize leading-none;
+    }
+
+    &__temperature {
+      @apply relative pr-6;
+    }
+
+    &__deg {
+      @apply absolute right-0 top-4 h-6 w-6 rounded-full border-[6px] border-white bg-transparent;
+    }
+
+    &__temp {
+      @apply text-[130px] font-bold leading-none;
+    }
+
+    &__max-min {
+      @apply ml-2 flex gap-4 text-right  text-sm;
+    }
+  }
+
+  &__metrics {
+    @apply grid grid-cols-3 gap-4 gap-y-8;
+  }
+
+  &__metric {
+    @apply flex flex-col items-center justify-between gap-3 text-center;
+
+    &__value {
+      @apply text-lg leading-none;
+    }
+
+    &__name {
+      @apply text-xs opacity-70;
+    }
+  }
+
+  &__not-available {
+    @apply p-10 text-center;
+
+    &__header {
+      @apply mb-4 text-2xl font-bold;
+    }
+
+    &__text {
+      @apply text-sm;
+    }
+  }
+}
