@@ -1,0 +1,7 @@
+.main-image {
+  @apply w-[100px] h-[100px] bg-[url('/weather-icons.svg')] bg-[length:600px];
+
+  &.dizzle {
+    @apply bg-[-40px_-40px];
+  }
+}

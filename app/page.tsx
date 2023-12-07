@@ -1,6 +1,7 @@
 "use server";
 
 import Navigator from "@/components/navigator";
+import Report from "@/components/report";
 import { fetchWeatherReports } from "@/services/useReports";
 import { SearchParamsTypes } from "@/types/pages";
 
@@ -16,15 +17,15 @@ export default async function Home({ searchParams }: HomePageProps) {
   });
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-10">
-      <h1 className="text-3xl">Weather Forecast App</h1>
-      <div className="rounded-lg bg-slate-50 p-10 shadow-md">
-        <pre className="max-h-[60vh] overflow-auto">
-          {result?.cod === "400"
-            ? "Choose the location"
-            : JSON.stringify(result, null, 1)}
-        </pre>
-      </div>
+    <main className="flex min-h-screen flex-col items-center justify-between">
+      <h1 className="relative -top-8 rounded-[40px] bg-white px-5 pb-3 pt-10 text-xl shadow-md">
+        <span className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text font-bold text-transparent">
+          Weather Forecast App
+        </span>
+      </h1>
+
+      <Report report={result} />
+
       <Navigator />
     </main>
   );

@@ -10,7 +10,7 @@ export const fetchWeatherReports = async ({
   try {
     const latlng = `lat=${latitude}&lon=${longitude}`;
     const response = await fetch(
-      `${BASE_WEATHER_API_URL}?${latlng}&appid=${API_KEY}`
+      `${BASE_WEATHER_API_URL}?&units=metric&${latlng}&appid=${API_KEY}`
     );
     const result = await response.json();
     return result;
