@@ -1,5 +1,5 @@
 .report {
-  @apply mb-8 w-full sm:max-w-lg p-4 text-white sm:mb-10 sm:rounded-2xl sm:p-10 sm:shadow-2xl md:max-w-2xl;
+  @apply mb-8 w-full sm:max-w-lg p-4 text-white sm:mb-10 sm:rounded-2xl sm:p-10 md:max-w-2xl;
 
   &__main {
     @apply mb-12 flex flex-row justify-between;
@@ -57,11 +57,15 @@
     @apply flex flex-col items-center justify-between gap-3 text-center;
 
     &__value {
-      @apply text-lg leading-none;
+      @apply text-lg leading-none md:text-2xl;
+    }
+
+    &__unit {
+      @apply text-xs md:text-base;
     }
 
     &__name {
-      @apply text-xs opacity-70;
+      @apply text-xs opacity-70 md:text-base;
     }
   }
 

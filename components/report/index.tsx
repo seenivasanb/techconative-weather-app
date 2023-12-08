@@ -26,7 +26,7 @@ const Report = ({ report }: any) => {
 
   return (
     <section className="report">
-      <BgOverlay theme={description} />
+      <BgOverlay climate={description} time={time} />
       {report?.weather ? (
         <div>
           <div className="report__main">
@@ -60,14 +60,14 @@ const Report = ({ report }: any) => {
             <Matric
               value={feelsLike}
               name="feels like"
-              unit="&deg;"
+              unit="deg"
               icon="theremo-meter"
             />
 
             <Matric
               value={humidity}
               name="humidity"
-              unit="&deg;"
+              unit="deg"
               icon="percent"
             />
 
@@ -83,7 +83,7 @@ const Report = ({ report }: any) => {
             <Matric
               value={direction}
               name="direction"
-              unit="&deg;"
+              unit="deg"
               icon="fan-direction"
             />
 

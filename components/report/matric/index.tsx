@@ -21,11 +21,15 @@ const Matric = ({ name, value, unit, icon }: Props) => {
       </div>
 
       <div>
-        <p className="report__metric__value">{value}&deg;</p>
-        <span className="report__metric__name">
-          {name}
-          {unit}
-        </span>
+        <p className="report__metric__value">
+          {value}
+          {unit === "deg" ? (
+            "°"
+          ) : (
+            <span className="report__metric__unit"> {unit}</span>
+          )}
+        </p>
+        <span className="report__metric__name">{name}</span>
       </div>
     </div>
   );

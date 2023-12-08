@@ -1,9 +1,16 @@
 .weather-image {
-  @apply w-[120px] h-[100px] bg-[url('/weather-icons.svg')] bg-[length:600px] bg-[-40px_-40px] md:w-[220px] md:h-[200px] md:bg-[length:1200px];
+  @apply w-[120px] h-[120px] bg-[url('/weather-icons.svg')] bg-[length:600px] bg-[-40px_-40px] md:w-[220px] md:h-[200px] md:bg-[length:1200px];
 
   &--night-mist,
   &--day-mist {
-    @apply bg-[-310px_-185px] h-[120px] md:h-[200px] md:bg-[-640px_-400px];
+    @apply bg-[-310px_-185px] md:bg-[-640px_-400px];
+  }
+
+  &--day-drizzle {
+    @apply bg-[-450px_-30px] md:bg-[-910px_-90px];
+  }
+  &--night-drizzle {
+    @apply bg-[-450px_-310px] md:bg-[-910px_-640px];
   }
 
   &--night-clouds,
@@ -16,8 +23,17 @@
     @apply bg-[-320px_-40px] md:bg-[-640px_-90px];
   }
 
-  &--day-cloud,
+  &--day-clouds,
   &--day-broken-clouds {
     @apply bg-[-170px_-25px] md:bg-[-350px_-60px];
+  }
+
+  &--day-overcast-clouds,
+  &--night-overcast-clouds {
+    @apply bg-[-320px_-35px] md:bg-[-640px_-90px];
+  }
+
+  &--day-few-clouds {
+    @apply bg-[-320px_-35px] md:bg-[-350px_-70px];
   }
 }
