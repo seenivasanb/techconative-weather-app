@@ -1,5 +1,5 @@
 import { renderHook } from "@testing-library/react";
-import useGoogleAPI from ".";
+import useGoogleAPI from "../../../hooks/useGoogleAPI";
 
 const setupGoogleMock = (callback: () => void) => {
   const google = {
@@ -14,7 +14,7 @@ const setupGoogleMock = (callback: () => void) => {
   (global as any).window.google = google;
 };
 
-describe("useGoogleAPI", () => {
+describe("useGoogleAPI Hook", () => {
   it("successfully got the results for correct coords", async () => {
     const mockResults = {
       results: [

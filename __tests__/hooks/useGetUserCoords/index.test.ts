@@ -1,5 +1,5 @@
+import useGetUserCoords from "@/hooks/useGetUserCoords";
 import { renderHook } from "@testing-library/react";
-import useGetUserCoords from ".";
 
 describe("useGetUserCoords Hook", () => {
   it("Succeed with returning coordinates", () => {
