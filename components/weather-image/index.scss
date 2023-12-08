@@ -10,7 +10,7 @@
     @apply bg-[-450px_-30px] md:bg-[-910px_-90px];
   }
   &--night-drizzle {
-    @apply bg-[-450px_-310px] md:bg-[-910px_-640px];
+    @apply bg-[-450px_-180px] md:bg-[-910px_-400px];
   }
 
   &--night-clouds,
@@ -18,9 +18,11 @@
     @apply bg-[-180px_-300px] md:bg-[-360px_-620px];
   }
 
-  &--night-few-clouds,
-  &--day-few-clouds {
+  &--night-few-clouds {
     @apply bg-[-320px_-40px] md:bg-[-640px_-90px];
+  }
+  &--day-few-clouds {
+    @apply bg-[-320px_-35px] md:bg-[-350px_-70px];
   }
 
   &--day-clouds,
@@ -31,9 +33,5 @@
   &--day-overcast-clouds,
   &--night-overcast-clouds {
     @apply bg-[-320px_-35px] md:bg-[-640px_-90px];
-  }
-
-  &--day-few-clouds {
-    @apply bg-[-320px_-35px] md:bg-[-350px_-70px];
   }
 }
