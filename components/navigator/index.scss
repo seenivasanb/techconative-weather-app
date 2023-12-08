@@ -4,7 +4,7 @@
   }
 
   &__location {
-    @apply mb-4 w-4/5 rounded-full bg-transparent p-4 text-center text-sm font-semibold uppercase text-white shadow-[5px_10px_90px_5px_rgba(0,0,0,0.4)];
+    @apply mb-4 w-4/5 rounded-full bg-transparent p-4 text-center text-sm font-semibold border border-white cursor-pointer uppercase text-white shadow-[5px_10px_90px_5px_rgba(0,0,0,0.4)] hover:bg-white hover:text-purple-600 transition duration-500;
   }
 
   &__content {

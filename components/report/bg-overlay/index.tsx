@@ -4,14 +4,18 @@ import "./index.scss";
 import { getThemeByWeatherName } from "@/lib/theme";
 
 type Props = {
-  theme?: string;
+  climate: string;
+  time: string;
 };
 
-const BgOverlay = ({ theme }: Props) => {
-  const themeClass = theme
-    ? ` report__bg-overlay--${getThemeByWeatherName(theme)}`
-    : "";
-  return <div className={`report__bg-overlay${themeClass}`} />;
+const BgOverlay = ({ climate, time }: Props) => {
+  const themeClass = climate
+    ? `${time}-${getThemeByWeatherName(climate)}`
+    : "default";
+
+  return (
+    <div className={`report__bg-overlay report__bg-overlay--${themeClass}`} />
+  );
 };
 
 export default memo(BgOverlay);

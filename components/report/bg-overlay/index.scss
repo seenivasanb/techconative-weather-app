@@ -1,18 +1,72 @@
 .report {
   &__bg-overlay {
-    @apply fixed left-0 top-0 -z-10 h-full w-full bg-gradient-to-b from-red-300 from-30% via-red-400 to-fuchsia-950;
+    @apply fixed left-0 top-0 -z-10 h-full w-full;
 
-    &--mist {
-      @apply from-blue-900 from-30% via-blue-800 to-blue-900;
+    &::before {
+      @apply content-[''] absolute w-full h-full left-0 top-0 opacity-20;
     }
 
-    &--clouds {
-      @apply from-sky-600 from-0% via-sky-400 via-30% to-sky-900 to-100%;
+    &--default {
+      @apply bg-gradient-to-b from-red-300 from-30% via-red-400 to-fuchsia-950;
+
+      &::before {
+        @apply bg-[url('/bg-img/night-snowfall.jpeg')] bg-cover;
+      }
     }
 
-    &--broken-clouds,
-    &--few-clouds {
-      @apply from-violet-950 from-0% via-blue-800 via-40% to-violet-500;
+    &--day-drizzle {
+      &::before {
+        @apply bg-[url('/bg-img/day-drizzle.jpeg')] bg-cover opacity-80;
+      }
+    }
+
+    &--night-drizzle {
+      @apply bg-gradient-to-b from-blue-900 from-30% via-blue-800 to-blue-900;
+
+      &::before {
+        @apply bg-[url('/bg-img/day-drizzle.jpeg')] bg-cover opacity-50;
+      }
+    }
+
+    &--day-mist {
+      @apply bg-gradient-to-b from-red-300 from-30% via-red-400 to-lime-950;
+
+      &::before {
+        @apply bg-[url('/bg-img/day-snowfall.jpeg')] bg-cover opacity-40;
+      }
+    }
+
+    &--night-mist {
+      @apply bg-gradient-to-b from-blue-900 from-30% via-blue-800 to-blue-900;
+
+      &::before {
+        @apply bg-[url('/bg-img/night-snowfall.jpeg')] bg-cover;
+      }
+    }
+
+    &--day-overcast-clouds {
+      @apply bg-gradient-to-b from-sky-500 from-30% via-sky-700 to-cyan-950;
+
+      &::before {
+        @apply bg-[url('/bg-img/day-overcast-clouds.jpeg')] bg-cover opacity-40;
+      }
+    }
+
+    &--day-clouds {
+      @apply bg-gradient-to-b from-sky-600 from-0% via-sky-400 via-30% to-sky-900 to-100%;
+
+      &::before {
+        @apply bg-[url('/bg-img/day-few-clouds.svg')] bg-cover opacity-60;
+      }
+    }
+
+    &--night-broken-clouds,
+    &--night-few-clouds {
+      @apply bg-gradient-to-b from-violet-950 from-0% via-blue-800 via-40% to-violet-500;
+
+      &::before {
+        @apply bg-[url('/bg-img/day-few-clouds.svg')] bg-cover opacity-60;
+      }
     }
   }
 }
