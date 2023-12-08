@@ -16,5 +16,6 @@ export const fetchWeatherReports = async ({
     return result;
   } catch (error) {
     console.log("Fetching weather report failed!", error);
+    return { error: true, message: "Failed to fetch report" };
   }
 };

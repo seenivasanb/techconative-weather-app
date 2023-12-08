@@ -1,0 +1,28 @@
+export const mockResults = {
+  coord: { lon: 80.1287, lat: 12.9734 },
+  weather: [{ id: 701, main: "Mist", description: "mist", icon: "50n" }],
+  base: "stations",
+  main: {
+    temp: 26.93,
+    feels_like: 30.44,
+    temp_min: 26.93,
+    temp_max: 26.93,
+    pressure: 1013,
+    humidity: 89,
+  },
+  visibility: 3500,
+  wind: { speed: 1.03, deg: 0 },
+  clouds: { all: 75 },
+  dt: 1702055157,
+  sys: {
+    type: 1,
+    id: 9218,
+    country: "IN",
+    sunrise: 1701996578,
+    sunset: 1702037574,
+  },
+  timezone: 19800,
+  id: 1260692,
+  name: "Pallāvaram",
+  cod: 200,
+};

@@ -10,7 +10,7 @@
     "prepare": "husky install",
     "commit": "git-cz",
     "test": "jest --watch",
-    "coverage": "jest --watchAll --coverage --collectCoverageFrom='component/**/*.{ts,tsx}'--collectCoverageFrom='!component/**/*.{test,spec}.{ts,tsx}'"
+    "coverage": "jest --watchAll --coverage"
   },
   "config": {
     "commitizen": {
@@ -29,6 +29,7 @@
     "eslint-plugin-tailwindcss": "^3.13.0",
     "lucide-react": "^0.294.0",
     "next": "14.0.3",
+    "next-router-mock": "^0.9.10",
     "prettier": "^3.1.0",
     "react": "^18",
     "react-dom": "^18",
