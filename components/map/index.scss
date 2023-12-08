@@ -1,0 +1,7 @@
+.map {
+  @apply h-[calc(100vh-80px)] md:h-[70vh];
+
+  & + button {
+    @apply hidden;
+  }
+}

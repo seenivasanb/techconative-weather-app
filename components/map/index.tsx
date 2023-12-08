@@ -1,6 +1,7 @@
 import React, { memo, useCallback, useState } from "react";
 import { GoogleMap, useLoadScript } from "@react-google-maps/api";
 import { CoordsType } from "@/types/hooks";
+import "./index.scss";
 
 type MapProps = {
   coords: CoordsType;
@@ -37,7 +38,6 @@ const Map = ({
         lng: Number(longitude) || 123.456,
       }}
       mapContainerClassName="map"
-      mapContainerStyle={{ width: "100%", height: "70vh", margin: "auto" }}
       onClick={(e) => handleClick(e)}
     />
   );

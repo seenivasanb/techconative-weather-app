@@ -7,7 +7,14 @@ const useGoogleAPI = () => {
       const result = await geocoder.geocode({
         location: { lat, lng },
       });
-      return result?.results[0]?.formatted_address;
+      const firstResult = result?.results[0];
+      return {
+        desktop: firstResult?.formatted_address,
+        mobile:
+          firstResult.address_components[2].long_name +
+          ", " +
+          firstResult.address_components[3].long_name,
+      };
     },
     []
   );
