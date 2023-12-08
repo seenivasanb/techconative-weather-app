@@ -30,11 +30,13 @@ const Navigator = () => {
   const setCurrentPlace = useCallback(
     async (latLng: globalThis.google.maps.LatLngLiteral) => {
       const place = await getPlaceNameByCoords(latLng);
-      setPlace(place);
-      selectedCoords.current = {
-        latitude: latLng.lat.toString(),
-        longitude: latLng.lng.toString(),
-      };
+      if (place.desktop && place.mobile) {
+        setPlace(place);
+        selectedCoords.current = {
+          latitude: latLng.lat.toString(),
+          longitude: latLng.lng.toString(),
+        };
+      }
     },
     [getPlaceNameByCoords]
   );
