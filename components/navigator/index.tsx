@@ -1,3 +1,4 @@
+/* eslint-disable tailwindcss/no-custom-classname */
 "use client";
 
 import {
@@ -14,13 +15,15 @@ import { Button } from "../ui/button";
 import { useCallback, useEffect, useRef, useState } from "react";
 import useGoogleAPI from "@/hooks/useGoogleAPI";
 import useURLCoords from "@/hooks/useURLCoords";
-import { CoordsType } from "@/types/hooks";
+import { CoordsType, PlaceType } from "@/types/hooks";
+import "./index.scss";
+import Place from "./place";
 
 const Navigator = () => {
   const { coords } = useGetUserCoords();
   const { setURLCoords } = useURLCoords();
   const { getPlaceNameByCoords } = useGoogleAPI();
-  const [place, setPlace] = useState("");
+  const [place, setPlace] = useState<PlaceType>();
   const [currentCoords, setCurrentCoords] = useState<CoordsType | null>(null);
   const selectedCoords = useRef<CoordsType | null>(null);
 
@@ -56,19 +59,26 @@ const Navigator = () => {
 
   return (
     <Dialog onOpenChange={handleOpenChange}>
-      <DialogTrigger className="flex w-full justify-center">
-        <div className="mb-4 w-4/5 rounded-full bg-transparent p-4 text-center text-sm font-semibold uppercase text-white shadow-[5px_10px_90px_5px_rgba(0,0,0,0.4)]">
-          <div className="line-clamp-1">{place || "Choose the location"}</div>
+      <DialogTrigger className="dialog__trigger">
+        <div className="dialog__location">
+          <div className="line-clamp-1">
+            <Place place={place} />
+          </div>
         </div>
       </DialogTrigger>
-      <DialogContent className="max-w-6xl p-3">
-        <DialogHeader className="w-full p-0">
-          <DialogTitle className="flex items-center justify-between ">
-            <div className="line-clamp-1 pr-4">
-              {place || "Choose the location"}
+      <DialogContent className="dialog__content">
+        <DialogHeader className="dialog__header">
+          <DialogTitle className="dialog__title">
+            <div className="dialog__location__title">
+              <Place place={place} />
             </div>
             <DialogClose asChild>
-              <Button onClick={handleSetURLCoords}>Get Weather</Button>
+              <Button
+                onClick={handleSetURLCoords}
+                className="dialog__close-button group"
+              >
+                <span className="dialog__close-button__text">Get Weather</span>
+              </Button>
             </DialogClose>
           </DialogTitle>
         </DialogHeader>

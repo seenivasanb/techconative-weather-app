@@ -3,14 +3,9 @@
 import React, { memo } from "react";
 import WeatherImage from "../weather-image";
 import { getCurrentDate, getTimeOfDay } from "@/lib/date";
-import { PiThermometerThin } from "react-icons/pi";
-import { SlSpeedometer } from "react-icons/sl";
-import { MdOutlineAir } from "react-icons/md";
-import { FaNfcDirectional } from "react-icons/fa6";
-import { VscEye } from "react-icons/vsc";
-import { CiPercent } from "react-icons/ci";
 import "./index.scss";
 import BgOverlay from "./bg-overlay";
+import Matric from "./matric";
 
 const Report = ({ report }: any) => {
   // console.log(report);
@@ -22,7 +17,9 @@ const Report = ({ report }: any) => {
   const humidity = report?.main?.humidity;
   const pressure = report?.main?.pressure;
   const name = report?.name;
-  const wind = report?.wind;
+  const speed = report?.wind?.speed;
+  const direction = report?.wind?.deg;
+
   const currentDate = getCurrentDate();
   const visibility = report?.visibility && report.visibility / 1000;
   const time = getTimeOfDay();
@@ -36,7 +33,7 @@ const Report = ({ report }: any) => {
             <div className="report__left">
               <div className="report__left__header">
                 <h2 className="report__left__place">{name}</h2>
-                <p className="text-xs">{currentDate}</p>
+                <p className="report__left__date">{currentDate}</p>
               </div>
               <div className="report__left__image">
                 <WeatherImage climate={description} time={time} />
@@ -60,65 +57,37 @@ const Report = ({ report }: any) => {
           </div>
 
           <div className="report__metrics">
-            <div className="report__metric">
-              <PiThermometerThin size={42} className="mt-1" />
-              <div>
-                <p className="report__metric__value">{feelsLike}&deg;</p>
-                <span className="report__metric__name">feels like</span>
-              </div>
-            </div>
+            <Matric
+              value={feelsLike}
+              name="feels like"
+              unit="&deg;"
+              icon="theremo-meter"
+            />
 
-            <div className="report__metric">
-              <CiPercent size={48} />
-              <div>
-                <p className="report__metric__value">
-                  {humidity}
-                  <span className="text-sm">%</span>
-                </p>
-                <span className="report__metric__name">humidity</span>
-              </div>
-            </div>
+            <Matric
+              value={humidity}
+              name="humidity"
+              unit="&deg;"
+              icon="percent"
+            />
 
-            <div className="report__metric">
-              <SlSpeedometer size={36} className="mt-2" />
-              <div>
-                <p className="report__metric__value">
-                  {pressure}
-                  <span className="text-sm">hpa</span>
-                </p>
-                <span className="report__metric__name">pressure</span>
-              </div>
-            </div>
+            <Matric
+              value={pressure}
+              name="pressure"
+              unit="hpa"
+              icon="speed-meter"
+            />
 
-            <div className="report__metric">
-              <MdOutlineAir size={36} />
-              <div>
-                <p className="report__metric__value">
-                  {Math.round(Number(wind?.speed))}
-                  <span className="text-sm">km/h</span>
-                </p>
-                <span className="report__metric__name">wind speed</span>
-              </div>
-            </div>
+            <Matric value={speed} name="wind speed" unit="km/h" icon="air" />
 
-            <div className="report__metric">
-              <FaNfcDirectional size={36} />
-              <div>
-                <p className="report__metric__value">{wind?.deg}&deg;</p>
-                <span className="report__metric__name">direction</span>
-              </div>
-            </div>
+            <Matric
+              value={direction}
+              name="direction"
+              unit="&deg;"
+              icon="fan-direction"
+            />
 
-            <div className="report__metric">
-              <VscEye size={36} />
-              <div>
-                <p className="report__metric__value">
-                  {visibility}
-                  <span className="text-sm">km</span>
-                </p>
-                <span className="report__metric__name">visibility</span>
-              </div>
-            </div>
+            <Matric value={visibility} name="visibility" unit="km" icon="eye" />
           </div>
         </div>
       ) : (
