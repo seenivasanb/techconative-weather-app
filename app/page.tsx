@@ -2,7 +2,7 @@
 
 import Navigator from "@/components/navigator";
 import Report from "@/components/report";
-import { fetchWeatherReports } from "@/services/useReports";
+import { fetchWeatherReports } from "@/services/fetchReports";
 import { SearchParamsTypes } from "@/types/pages";
 
 type HomePageProps = {
