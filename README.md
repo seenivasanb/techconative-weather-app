@@ -23,6 +23,7 @@ The implementation will leverage the capabilities of Next.js to ensure a seamles
 - **[Components](#components)**
 - **[Custom React Hooks](#custom-react-hooks)**
 - **[Services](#services)**
+- **[Utility Functions](#utility-functions)**
 
 <br />
 
