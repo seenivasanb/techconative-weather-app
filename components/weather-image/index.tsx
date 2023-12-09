@@ -9,13 +9,16 @@ type Props = {
 };
 
 const WeatherImage = ({ climate, time }: Props) => {
-  const themeClass = climate
-    ? ` weather-image--${time}-${getThemeByWeatherName(climate)}`
-    : "";
+  const themeClass = ` weather-image--${time}-${getThemeByWeatherName(
+    climate
+  )}`;
 
   return (
-    <div>
-      <div className={`weather-image${themeClass}`} />
+    <div data-testid="weather-image-container">
+      <div
+        data-testid={`${themeClass}`}
+        className={`weather-image${themeClass}`}
+      />
     </div>
   );
 };
