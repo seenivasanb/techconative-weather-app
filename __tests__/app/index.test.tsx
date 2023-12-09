@@ -1,8 +1,20 @@
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import Home from "@/app/page";
-import { AppRouterContextProviderMock } from "../../mocks/mock-router";
-import { mockResults } from "@/mocks/mock-weather-results";
+import { mockResults } from "@/__mocks__/mock-weather-results";
+
+jest.mock("next/navigation", () => {
+  return {
+    __esModule: true,
+    usePathname: () => "/",
+    useRouter: () => ({
+      push: jest.fn(),
+      replace: jest.fn(),
+      prefetch: jest.fn(),
+    }),
+    useSearchParams: () => "/",
+  };
+});
 
 describe("Home", () => {
   const setup = async (callback: any) => {
@@ -13,11 +25,7 @@ describe("Home", () => {
     );
 
     const HomeComponent = await Home({ searchParams: { lat: "", lon: "" } });
-    render(
-      <AppRouterContextProviderMock router={{}}>
-        {HomeComponent}
-      </AppRouterContextProviderMock>
-    );
+    render(<>{HomeComponent}</>);
   };
 
   it("renders a heading", async () => {
