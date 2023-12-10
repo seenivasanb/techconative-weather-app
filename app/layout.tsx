@@ -19,12 +19,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        {process.env.NODE_ENV === "development" && (
+        {(process.env.NODE_ENV === "development" ||
+          process.env.VERCEL_ENV === "preview") && (
           // eslint-disable-next-line @next/next/no-sync-scripts
           <script
-            data-project-id="..."
+            data-project-id="hWCUac1iVuHHdsjomCn3Zvl5BKHXxlAQphhYyLI1"
+            data-is-production-environment="false"
             src="https://snippet.meticulous.ai/v1/meticulous.js"
-          ></script>
+          />
         )}
       </head>
       <body className={inter.className}>{children}</body>
