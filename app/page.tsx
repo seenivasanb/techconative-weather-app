@@ -19,7 +19,7 @@ export default async function Home(props: HomePageProps) {
     <main className="flex min-h-screen flex-col items-center justify-between">
       <h1
         id="home-header"
-        className="relative -top-8 rounded-[40px] bg-white px-8 pb-3 pt-11 text-xl shadow-md"
+        className="relative -top-8 rounded-[40px] bg-white px-12 pb-3 pt-11 text-4xl shadow-md"
       >
         <span className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text font-bold text-transparent">
           Weather Forecast App
