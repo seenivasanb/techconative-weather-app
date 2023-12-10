@@ -30,6 +30,7 @@ const Navigator = () => {
   const setCurrentPlace = useCallback(
     async (latLng: globalThis.google.maps.LatLngLiteral) => {
       const place = await getPlaceNameByCoords(latLng);
+      console.log("place", place);
       if (place.desktop && place.mobile) {
         setPlace(place);
         selectedCoords.current = {
@@ -49,6 +50,7 @@ const Navigator = () => {
       selectedCoords.current = null;
     }
   }, [setURLCoords]);
+
   const handleOpenChange = useCallback(() => {
     if (selectedCoords) {
       handleSetURLCoords();
@@ -57,7 +59,7 @@ const Navigator = () => {
 
   useEffect(() => {
     setURLCoords(coords);
-  }, [coords, setCurrentPlace, setURLCoords]);
+  }, [coords]);
 
   return (
     <Dialog onOpenChange={handleOpenChange}>
